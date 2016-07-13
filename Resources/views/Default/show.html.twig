@@ -1,0 +1,72 @@
+{% extends '@TraitUpload/Default/template.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+    {% block Gallery %}
+
+
+        <div class="row-fluid">
+            <div class="col-sm-8">
+                <div class="page-header">
+                    <h3>Article {{ entity.id }}</h3>
+                </div>
+                <div class="row">
+                    <p><strong>Nom du document :</strong>{{ entity.name }}</p>
+                </div>
+                <div class="row">
+                    <p><strong>Document :</strong></p>
+                    <a href="{{ asset(entity.webPath) }}" class="fancybox-thumb thumbnail" rel="fancybox-thumb">
+                        <img src="{{ asset(entity.webPath) }}" alt="{{ entity.name }}">
+                    </a>
+                </div>
+
+            </div>
+            <div class="col-sm-4">
+                <div class="page-header">
+                    <h3>Action</h3>
+                </div>
+                <a href="{{ path('trait_upload_index') }}" class="btn btn-primary btn-block">Back to the list</a>
+
+                <a href="{{ path('trait_upload_edit', { 'id': entity.id }) }}" class="btn btn-default btn-block">Modifier</a>
+
+                <!-- Small modal -->
+                <button type="button" data-toggle="modal" data-target=".bs-example-modal-sm"
+                        class="btn btn-danger btn-block"
+                        style="margin-top: 5px;">
+                    supprimer
+                </button>
+
+                <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"
+                     aria-labelledby="mySmallModalLabel">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content" style="background-color: indianred;">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">×</span></button>
+                                <h4 class="modal-title" id="mySmallModalLabel">
+                                    <strong style="color: whitesmoke;">Demande de suppression ? </strong></h4>
+                            </div>
+                            <div class="container-fluid">
+                                <p style="color: whitesmoke;">
+                                    <strong>Warning !! </strong> <br>Etes-vous vraiment sure de vouloir supprimer cet
+                                    article ?
+
+                                    {{ form_start(delete_form) }}
+                                    <input type="submit" value="Effacer" class="btn btn-default btn-block" \>
+                                    {{ form_end(delete_form) }}
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends '@TraitUpload/Default/template.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+    {% block Gallery %}
+        <div class="page-header">
+            <h3>Pannier edit</h3>
+        </div>
+        {{ form_start(edit_form) }}
+        {{ form_errors(edit_form) }}
+        <div class="row">
+            <div class="col-xs-6 col-md-4">
+                <a href="{{ asset(entity.webPath) }}" class="fancybox-thumb thumbnail" rel="fancybox-thumb">
+                    <img src="{{ asset(entity.webPath) }}" alt="...">
+                </a>
+            </div>
+            <div class="col-xs-6 col-md-4">
+                <div class="row-fluid">
+                    {{ form_row(edit_form.name) }}
+
+                </div>
+                <div class="row-fluid">
+                    {{ form_row(edit_form.file) }}
+
+                </div>
+            </div>
+            {{ form_rest(edit_form) }}
+            <input type="submit" value="Modifier" class="btn btn-block btn-default"/>
+            {{ form_end(edit_form) }}
+        </div>
+        <div class="row-fluid">
+            <a href="{{ path('pannier_facture_index') }}" class="btn btn-block btn-primary">Back to the list</a>
+            {{ form_start(delete_form) }}
+            <input type="submit" value="Supprimer" class="btn btn-block btn-danger" style="margin-top: 5px;">
+            {{ form_end(delete_form) }}
+        </div>
+
+    {% endblock %}
+    {% block javascripts %}
+        {{ parent() }}
+    {% endblock %}
+
+
+
